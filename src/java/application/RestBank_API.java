@@ -27,18 +27,19 @@ public class RestBank_API {
         return "Service REST Bank";
     }
     
-    @GET
+    /*@GET
     @Path("creerListeClients")
     @Produces("text/plain")
     public String creerListeClients() {
         return "Créer liste de clients";
-    }
+    }*/
     
     @GET
-    @Path("ajouterClient")
+    @Path("ajouterClient/{nom}/{prenom}")
     @Produces("text/plain")
-    public String ajouterClient() {
-        return "Ajouter client";
+    public String ajouterClient(@PathParam("nom") String nom, 
+                                @PathParam("prenom") String prenom) {
+        return "Ajouter client "+'\n'+"Bienvenue "+nom+" "+prenom;
     }
     
     @GET
