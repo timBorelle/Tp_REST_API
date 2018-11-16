@@ -51,7 +51,7 @@ public class RestBank_API {
                                 @QueryParam("prenom") String prenom) { 
         
         Client newClient = new Client();
-        newClient.setId(0);
+        newClient.setId(this.clients.getLastId()+1);
         newClient.setNom(nom);
         newClient.setPrenom(prenom);
         this.clients.ajouterClientdansListe(newClient);

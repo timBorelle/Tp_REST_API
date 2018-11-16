@@ -43,7 +43,10 @@ public class ListeClient {
     }
     
     public int getLastId(){
-        return this.inventaire.get(this.inventaire.size() - 1).getId();
+        if (!this.inventaire.isEmpty())
+            return this.inventaire.get(this.inventaire.size() - 1).getId();
+        return -1;
+        
     }
 
 }
