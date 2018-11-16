@@ -41,5 +41,9 @@ public class ListeClient {
     public void supprimerClient(Client c) {
         this.inventaire.remove(c);
     }
+    
+    public int getLastId(){
+        return this.inventaire.get(this.inventaire.size() - 1).getId();
+    }
 
 }

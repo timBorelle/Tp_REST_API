@@ -17,6 +17,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -43,11 +44,11 @@ public class RestBank_API {
     }*/
     
     @POST
-    @Path("ajouterClient/{nom}/{prenom}")    
+    @Path("ajouterClient")    
     @Consumes("text/plain")
     @Produces(MediaType.APPLICATION_XML)
-    public String ajouterClient(@PathParam("nom") String nom, 
-                                @PathParam("prenom") String prenom) { 
+    public String ajouterClient(@QueryParam("nom") String nom, 
+                                @QueryParam("prenom") String prenom) { 
         
         Client newClient = new Client();
         newClient.setId(0);
