@@ -14,20 +14,18 @@ import java.util.List;
  */
 public class ListeClient {
 
-    static List<Client> inventaire;
+    List<Client> inventaire;
 
     public ListeClient() {
-        inventaire = new ArrayList<>();
-        inventaire.add(new Client("nom 1", "prenom 1"));
-        inventaire.add(new Client("nom 2", "prenom 2"));
-        inventaire.add(new Client("nom 3", "prenom 3"));
+        this.inventaire = new ArrayList<>();
     }
 
-    public static void ajouterClientdansListe(Client c) {
-        inventaire.add(c);
+    public void ajouterClientdansListe(Client c) {
+        this.inventaire.add(c);
     }
 
     public void modifierClient(Client c, String nom, String prenom) {
+        c.setId(0);
         c.setNom(nom);
         c.setPrenom(prenom);
     }

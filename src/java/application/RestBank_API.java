@@ -5,6 +5,7 @@
  */
 package application;
 
+import clients.Client;
 import clients.ListeClient;
 import java.util.List;
 import javax.ws.rs.core.Context;
@@ -16,7 +17,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.Client;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -26,6 +26,8 @@ import javax.ws.rs.core.MediaType;
 @Path("rest")
 public class RestBank_API {
  
+    private ListeClient clients = new ListeClient();
+    
     @GET
     @Produces("text/plain")
     public String getText() {
@@ -46,9 +48,13 @@ public class RestBank_API {
     @Produces(MediaType.APPLICATION_XML)
     public String ajouterClient(@PathParam("nom") String nom, 
                                 @PathParam("prenom") String prenom) { 
-        //Client newClient = new Client(nom, prenom);
         
-        return "Ajouter client "+'\n'+"Bienvenue "+nom+" "+prenom;
+        Client newClient = new Client();
+        newClient.setId(0);
+        newClient.setNom(nom);
+        newClient.setPrenom(prenom);
+        this.clients.ajouterClientdansListe(newClient);
+        return "Ajouter client "+'\n'+"Bienvenue "+newClient.toString();
     }
     
     @GET

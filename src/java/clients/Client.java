@@ -14,12 +14,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Client {
     
+    private int id;
     private String nom;
     private String prenom;
+
+    public Client() {
+    }
     
-    public Client(String nomC, String prenomC){
+    
+    public Client(int id, String nomC, String prenomC){
+        this.id = id;
         this.nom = nomC;
         this.prenom = prenomC;
+    }
+    
+    public void setId(int idC){
+        this.id = idC;
+    }
+    
+    public int getId(){
+        return this.id;
     }
     
     public void setNom(String nomC){
@@ -37,4 +51,12 @@ public class Client {
     public String getPrenom(){
         return this.prenom;
     }
+
+    @Override
+    public String toString() {
+        //return super.toString(); 
+        return "Client{" + "id=" + id + ", firstname=" + prenom + ", lastname=" + nom + '}';
+    }
+    
+    
 }
