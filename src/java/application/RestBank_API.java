@@ -24,6 +24,49 @@ public class RestBank_API {
     @GET
     @Produces("text/plain")
     public String getText() {
-        return "Mon premier service REST";
+        return "Service REST Bank";
     }
+    
+    @GET
+    @Path("creerListeClients")
+    @Produces("text/plain")
+    public String creerListeClients() {
+        return "Créer liste de clients";
+    }
+    
+    @GET
+    @Path("ajouterClient")
+    @Produces("text/plain")
+    public String ajouterClient() {
+        return "Ajouter client";
+    }
+    
+    @GET
+    @Path("modifierClient")
+    @Produces("text/plain")
+    public String modifierClient() {
+        return "Modifier client";
+    }
+    
+    @GET
+    @Path("consulterClient")
+    @Produces("text/plain")
+    public String consulterClient() {
+        return "consulter Client";
+    }
+    
+    @GET
+    @Path("consulterListeClient")
+    @Produces("text/plain")
+    public String consulterListeClient() {
+        return "consulter toutes les infos des Client";
+    }
+    
+    @GET
+    @Path("supprimerClient")
+    @Produces("text/plain")
+    public String supprimerClient() {
+        return "supprimer Client !";
+    }
+    
 }
