@@ -30,7 +30,6 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(application.GenericResource.class);
-        //...
         resources.add(application.RestBank_API.class);
     }
     

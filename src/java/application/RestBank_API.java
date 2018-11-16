@@ -5,6 +5,8 @@
  */
 package application;
 
+import clients.ListeClient;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
@@ -13,6 +15,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -24,6 +28,7 @@ public class RestBank_API {
     @GET
     @Produces("text/plain")
     public String getText() {
+        
         return "Service REST Bank";
     }
     
@@ -34,13 +39,13 @@ public class RestBank_API {
         return "Créer liste de clients";
     }*/
     
-    @GET
-    @Path("ajouterClient/{nom}/{prenom}")
-    @Produces("text/plain")
-    //@Consumes("application/xml")
-    public String ajouterClient(@PathParam("nom") String nom, 
-                                @PathParam("prenom") String prenom) {
-        return "Ajouter client "+'\n'+"Bienvenue "+nom+" "+prenom;
+    @POST
+    @Path("ajouterClient")      // /{nom}/{prenom}
+    //@Produces("text/plain")
+    @Consumes(MediaType.APPLICATION_XML)  //réel
+    public String ajouterClient(Client client) { /* @PathParam("nom") String nom, 
+                                @PathParam("prenom") String prenom */
+        return "Ajouter client "/*+'\n'+"Bienvenue "+nom+" "+prenom*/;
     }
     
     @GET
@@ -57,11 +62,15 @@ public class RestBank_API {
         return "consulter Client";
     }
     
+    /*
+     * consulter Liste Client
+    */
     @GET
-    @Path("consulterListeClient")
-    @Produces("text/plain")
-    public String consulterListeClient() {
-        return "consulter toutes les infos des Client";
+    @Path("all")
+    @Consumes(MediaType.APPLICATION_XML)
+    public ListeClient getAll() {
+        //return "consulter toutes les infos des Client";
+        return new ListeClient();
     }
     
     @GET
