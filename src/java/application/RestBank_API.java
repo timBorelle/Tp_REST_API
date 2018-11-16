@@ -41,12 +41,14 @@ public class RestBank_API {
     }*/
     
     @POST
-    @Path("ajouterClient")      // /{nom}/{prenom}
-    //@Produces("text/plain")
-    @Consumes(MediaType.APPLICATION_XML)  //réel
-    public String ajouterClient(Client client) { /* @PathParam("nom") String nom, 
-                                @PathParam("prenom") String prenom */
-        return "Ajouter client "/*+'\n'+"Bienvenue "+nom+" "+prenom*/;
+    @Path("ajouterClient/{nom}/{prenom}")    
+    @Consumes("text/plain")
+    @Produces(MediaType.APPLICATION_XML)
+    public String ajouterClient(@PathParam("nom") String nom, 
+                                @PathParam("prenom") String prenom) { 
+        //Client newClient = new Client(nom, prenom);
+        
+        return "Ajouter client "+'\n'+"Bienvenue "+nom+" "+prenom;
     }
     
     @GET
