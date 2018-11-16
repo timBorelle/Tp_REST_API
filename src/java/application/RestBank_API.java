@@ -18,7 +18,7 @@ import javax.ws.rs.Produces;
  *
  * @author tim-b
  */
-@Path("RestBank_API")
+@Path("rest")
 public class RestBank_API {
  
     @GET
@@ -37,6 +37,7 @@ public class RestBank_API {
     @GET
     @Path("ajouterClient/{nom}/{prenom}")
     @Produces("text/plain")
+    //@Consumes("application/xml")
     public String ajouterClient(@PathParam("nom") String nom, 
                                 @PathParam("prenom") String prenom) {
         return "Ajouter client "+'\n'+"Bienvenue "+nom+" "+prenom;
@@ -51,7 +52,7 @@ public class RestBank_API {
     
     @GET
     @Path("consulterClient")
-    @Produces("text/plain")
+    @Produces("application/xml")
     public String consulterClient() {
         return "consulter Client";
     }
