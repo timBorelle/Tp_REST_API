@@ -58,11 +58,27 @@ public class RestBank_API {
         return "Ajouter client "+'\n'+"Bienvenue "+newClient.toString();
     }
     
-    @GET
-    @Path("modifierClient")
+    @PUT
+    @Path("modifierClient/{id}/{nom}/{prenom}")
+    //@Produces(MediaType.APPLICATION_XML)
     @Produces("text/plain")
-    public String modifierClient() {
-        return "Modifier client";
+    public String modifierClient(@PathParam("id") String id,
+                                 @PathParam("nom") String nom,
+                                 @PathParam("prenom") String prenom) {
+        //peupler la liste de clients (sans base de données)
+        Client newClient = new Client();
+        newClient.setId(this.clients.getLastId()+1);
+        newClient.setNom("Dupont");
+        newClient.setPrenom("Jacques");
+        
+        for(Client c : this.clients.consulterListeClient()){
+            if (c.getId()==Integer.parseInt(id)) {
+                c.setNom(nom);
+                c.setPrenom(prenom);
+                return "Client modifié avec succès "+'\n'+c.toString();
+            }
+        }
+        return "Le client avec l'id "+id+" est introuvable !";    
     }
     
     @GET
@@ -81,7 +97,7 @@ public class RestBank_API {
     //@Produces("text/plain")
     @Produces(MediaType.APPLICATION_XML)
     public List<Client> getAll() {
-        //peupler la liste (sans base de données)
+        //peupler la liste de clients (sans base de données)
         Client newClient = new Client();
         newClient.setId(this.clients.getLastId()+1);
         newClient.setNom("Dupont");
