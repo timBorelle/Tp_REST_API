@@ -13,36 +13,35 @@ import java.util.List;
  * @author tim-b
  */
 public class ListeClient {
-  
+
     List<Client> inventaire;
-            
-    public ListeClient(){
+
+    public ListeClient() {
         this.inventaire = new ArrayList<>();
+        this.inventaire.add(new Client("nom 1", "prenom 1"));
+        this.inventaire.add(new Client("nom 2", "prenom 2"));
+        this.inventaire.add(new Client("nom 3", "prenom 3"));
     }
-    
-    public void ajouterClientdansListe(String nom, String prenom){
-        Client c1 = new Client(nom, prenom);
-        this.inventaire.add(c1);
+
+    public void ajouterClientdansListe(Client c) {
+        this.inventaire.add(c);
     }
-    
-    public void modifierClient(){
-        
+
+    public void modifierClient(Client c, String nom, String prenom) {
+        c.setNom(nom);
+        c.setPrenom(prenom);
     }
-    
-    public Client consulterClient(){
-        Client c = null;
-        
+
+    public Client consulterClient(Client c) {
         return c;
     }
-    
-    public List<Client> consulterListeClient(){
-        List<Client> lc = null;
-        
-        return lc;
+
+    public List<Client> consulterListeClient() {
+        return this.inventaire ;
     }
-    
-    public void supprimerClient(){
-        
+
+    public void supprimerClient(Client c) {
+        this.inventaire.remove(c);
     }
-            
+
 }
