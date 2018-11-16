@@ -32,8 +32,8 @@ public class ListeClient {
         c.setPrenom(prenom);
     }
 
-    public Client consulterClient(Client c) {
-        return c;
+    public Client consulterClient(int id) {
+        return this.inventaire.get(id);
     }
 
     public List<Client> consulterListeClient() {
