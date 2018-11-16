@@ -77,10 +77,25 @@ public class RestBank_API {
     */
     @GET
     @Path("all")
-    @Consumes(MediaType.APPLICATION_XML)
-    public ListeClient getAll() {
+    //@Consumes(MediaType.APPLICATION_XML)
+    //@Produces("text/plain")
+    @Produces(MediaType.APPLICATION_XML)
+    public List<Client> getAll() {
+        //peupler la liste (sans base de données)
+        Client newClient = new Client();
+        newClient.setId(this.clients.getLastId()+1);
+        newClient.setNom("Dupont");
+        newClient.setPrenom("Jacques");
+        this.clients.ajouterClientdansListe(newClient);
+        Client newClient2 = new Client();
+        newClient2.setId(this.clients.getLastId()+1);
+        newClient2.setNom("Nom");
+        newClient2.setPrenom("Paul");
+        this.clients.ajouterClientdansListe(newClient2);
+        
         //return "consulter toutes les infos des Client";
-        return new ListeClient();
+        //return new ListeClient();
+        return this.clients.consulterListeClient();
     }
     
     @GET

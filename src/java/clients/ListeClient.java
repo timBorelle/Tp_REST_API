@@ -18,6 +18,11 @@ public class ListeClient {
 
     public ListeClient() {
         this.inventaire = new ArrayList<>();
+        Client cExemple = new Client();
+        cExemple.setId(getLastId()+1);
+        cExemple.setNom("nom exemple");
+        cExemple.setPrenom("prenom exemple");
+        this.inventaire.add(cExemple);
     }
 
     public void ajouterClientdansListe(Client c) {
