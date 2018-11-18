@@ -18,11 +18,17 @@ public class ListeClient {
 
     public ListeClient() {
         this.inventaire = new ArrayList<>();
+        //peupler la liste de clients (sans base de données)
         Client cExemple = new Client();
         cExemple.setId(getLastId()+1);
-        cExemple.setNom("nom exemple");
-        cExemple.setPrenom("prenom exemple");
+        cExemple.setNom("Martin");
+        cExemple.setPrenom("Paul");
         this.inventaire.add(cExemple);
+        Client newClient = new Client();
+        newClient.setId(this.getLastId()+1);
+        newClient.setNom("Dupont");
+        newClient.setPrenom("Jacques");
+        this.inventaire.add(newClient);
     }
 
     public void ajouterClientdansListe(Client c) {
@@ -30,7 +36,7 @@ public class ListeClient {
     }
 
     public void modifierClient(Client c, String nom, String prenom) {
-        c.setId(0);
+        c.setId(c.getId());
         c.setNom(nom);
         c.setPrenom(prenom);
     }
