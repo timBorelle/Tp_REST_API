@@ -52,10 +52,10 @@ public class RestBank_API {
         
         Client newClient = new Client();
         newClient.setId(this.clients.getLastId()+1);
-        newClient.setNom(nom);
-        newClient.setPrenom(prenom);
+        newClient.setNom("Dupont");
+        newClient.setPrenom("Michel");
         this.clients.ajouterClientdansListe(newClient);
-        return "Ajouter client "+'\n'+"Bienvenue "+newClient.toString();
+        return "Ajouter client "+'\n'+"Bienvenue "+ newClient.toString();
     }
     
     @PUT
@@ -82,10 +82,24 @@ public class RestBank_API {
     }
     
     @GET
-    @Path("consulterClient")
+    @Path("consulterClient/{id}/{nom}/{prenom}")
     @Produces("application/xml")
-    public String consulterClient() {
-        return "consulter Client";
+    public String consulterClient(@PathParam("id") String id,
+                                 @PathParam("nom") String nom,
+                                 @PathParam("prenom") String prenom) {
+        //peupler la liste de clients (sans base de données)
+        Client newClient = new Client();
+        newClient.setId(this.clients.getLastId()+1);
+        newClient.setNom("Dupont");
+        newClient.setPrenom("Jacques");
+        
+        for(Client c : this.clients.consulterListeClient()){
+            if (c.getId()==Integer.parseInt(id)) {
+               this.clients.consulterClient(c.getId());
+                return "Client supprimé avec succès "+'\n'+c.toString();
+            }
+        }
+        return "Le client avec l'id "+id+" est introuvable !";
     }
     
     /*
@@ -114,11 +128,25 @@ public class RestBank_API {
         return this.clients.consulterListeClient();
     }
     
-    @GET
-    @Path("supprimerClient")
+    @PUT
+    @Path("supprimerClient/{id}/{nom}/{prenom}")
     @Produces("text/plain")
-    public String supprimerClient() {
-        return "supprimer Client !";
+    public String supprimerClient(@PathParam("id") String id,
+                                 @PathParam("nom") String nom,
+                                 @PathParam("prenom") String prenom) {
+        //peupler la liste de clients (sans base de données)
+        Client newClient = new Client();
+        newClient.setId(this.clients.getLastId()+1);
+        newClient.setNom("Dupont");
+        newClient.setPrenom("Jacques");
+        
+        for(Client c : this.clients.consulterListeClient()){
+            if (c.getId()==Integer.parseInt(id)) {
+               this.clients.supprimerClient(c);
+                return "Client supprimé avec succès "+'\n'+c.toString();
+            }
+        }
+        return "Le client avec l'id "+id+" est introuvable !"; 
     }
     
 }
